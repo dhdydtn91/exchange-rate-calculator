@@ -1,4 +1,4 @@
-package wooahan.youth.exchangeratecalculator;
+package wooahan.youth.exchange;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
