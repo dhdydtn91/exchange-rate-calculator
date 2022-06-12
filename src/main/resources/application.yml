@@ -1,5 +1,4 @@
 currencyData:
   accessKey: YplEbYTfKKFV9HQuj5g9bEE1dNUZdqoj
   baseUrl: https://api.apilayer.com/currency_data/live
-  source: USD
-  currencies: JPY,KRW,PHP
+

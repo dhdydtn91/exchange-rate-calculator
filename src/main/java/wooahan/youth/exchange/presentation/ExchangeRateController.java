@@ -13,9 +13,10 @@ import wooahan.youth.exchange.application.CurrencyDataApiService;
 public class ExchangeRateController {
 
     private final CurrencyDataApiService currencyDataApiService;
-    @PostMapping("/exchange")
-    public ResponseEntity<ExchangeResponseDto> exchange(ExchangeRequestDto request){
 
-        return null;
+    @PostMapping("/live")
+    public ResponseEntity<ExchangeResponseDto.CurrencyDataDto> exchange(ExchangeRequestDto.CurrencyDataRequest request){
+        var response = currencyDataApiService.getCurrencyData(request);
+        return ResponseEntity.ok().body(response);
     }
 }

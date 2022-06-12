@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import wooahan.youth.exchange.application.CurrencyDataApiCaller;
-import wooahan.youth.exchange.application.CurrencyDataDto;
+import wooahan.youth.exchange.presentation.ExchangeRequestDto.CurrencyDataRequest;
+import wooahan.youth.exchange.presentation.ExchangeResponseDto.CurrencyDataDto;
 
 @Component
 @RequiredArgsConstructor
@@ -20,27 +21,24 @@ public class CurrencyDataApiCallerImpl implements CurrencyDataApiCaller {
     private final String accessKey;
     @Value("${currencyData.baseUrl}")
     private final String url;
-    @Value("${currencyData.source}")
-    private final String source;
-    @Value("${currencyData.currencies}")
-    private final String currencies;
+
     private final RestTemplate restTemplate;
 
 
     @Override
-    public CurrencyDataDto call() {
+    public CurrencyDataDto call(CurrencyDataRequest request) {
         return restTemplate.exchange(
-                        createEndPoint(),
+                        createEndPoint(request),
                         HttpMethod.GET,
                         new HttpEntity<>(createHeader()),
                         CurrencyDataDto.class)
                 .getBody();
     }
 
-    private URI createEndPoint() {
+    private URI createEndPoint(CurrencyDataRequest request) {
         return UriComponentsBuilder.fromHttpUrl(url)
-                .queryParam("source", source)
-                .queryParam("currencies", currencies)
+                .queryParam("source", request.getSource())
+                .queryParam("currencies", request.getCurrencies())
                 .build()
                 .toUri();
     }
@@ -50,5 +48,4 @@ public class CurrencyDataApiCallerImpl implements CurrencyDataApiCaller {
         httpHeaders.set("apikey", accessKey);
         return httpHeaders;
     }
-
 }
