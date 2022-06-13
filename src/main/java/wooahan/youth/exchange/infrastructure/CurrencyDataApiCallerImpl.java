@@ -2,6 +2,7 @@ package wooahan.youth.exchange.infrastructure;
 
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,16 +15,19 @@ import wooahan.youth.exchange.presentation.ExchangeRequestDto.CurrencyDataReques
 import wooahan.youth.exchange.presentation.ExchangeResponseDto.CurrencyDataDto;
 
 @Component
-@RequiredArgsConstructor
 public class CurrencyDataApiCallerImpl implements CurrencyDataApiCaller {
 
     @Value("${currencyData.accessKey}")
-    private final String accessKey;
+    private String accessKey;
     @Value("${currencyData.baseUrl}")
-    private final String url;
+    private String url;
 
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
+    @Autowired
+    public CurrencyDataApiCallerImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public CurrencyDataDto call(CurrencyDataRequest request) {
