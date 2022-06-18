@@ -2,6 +2,7 @@ package wooahan.youth.exchange.presentation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import wooahan.youth.exchange.domain.Money;
 import wooahan.youth.exchange.application.Quotes;
 
 public class ExchangeResponseDto {
@@ -12,6 +13,18 @@ public class ExchangeResponseDto {
 
         private final Quotes quotes;
         private final String source;
-        private final String success;
+        private final boolean success;
+    }
+
+    @Getter
+    public static class ExchangeResponse  {
+
+        private final String currency;
+        private final String exchangeAmount;
+
+        public ExchangeResponse(Money money) {
+            this.currency = money.getCurrency();
+            this.exchangeAmount = money.getExchangeRate();
+        }
     }
 }

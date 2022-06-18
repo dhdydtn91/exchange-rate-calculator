@@ -8,15 +8,21 @@ import lombok.Setter;
 
 public class ExchangeRequestDto {
 
+
+    @Getter
     @Setter
     @AllArgsConstructor
     public static class CurrencyDataRequest {
-        @Getter
         private final String source;
-        private final List<String> currencies;
+        private final String currencies;
+    }
 
-        public String getCurrencies() {
-            return String.join(",", currencies);
-        }
+    @Getter
+    @AllArgsConstructor
+    public static class ExchangeRequest {
+        private final String source;
+        private final String currency;
+        private Integer remittanceAmount;
+        private double exchangeRate;
     }
 }
