@@ -23,8 +23,8 @@ public class ExchangeRateCalculatorService {
     private void validateSourceAmount(ExchangeRequest request) {
         Integer remittanceAmount = request.getRemittanceAmount();
         Integer amount = getAmount(remittanceAmount);
-        if(amount < 0 || amount > 10000){
-           throw new BusinessException(ErrorCode.INVALID_INPUT_VALUE);
+        if (amount < 0 || amount > 10000) {
+            throw new BusinessException(ErrorCode.INVALID_INPUT_VALUE);
         }
     }
 

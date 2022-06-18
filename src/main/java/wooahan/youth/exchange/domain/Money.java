@@ -14,7 +14,7 @@ public class Money {
     private final String currency;
 
     public Money(double exchangeRate, String currency) {
-        this(BigDecimal.valueOf(exchangeRate),currency);
+        this(BigDecimal.valueOf(exchangeRate), currency);
     }
 
     public Money(BigDecimal exchangeRate, String currency) {
@@ -24,7 +24,7 @@ public class Money {
     }
 
     private void validate(BigDecimal exchangeRate, String currency) {
-        if(!StringUtils.hasText(currency) || isNull(exchangeRate)){
+        if (!StringUtils.hasText(currency) || isNull(exchangeRate)) {
             throw new BusinessException();
         }
     }

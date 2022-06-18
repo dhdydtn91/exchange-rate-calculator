@@ -11,7 +11,7 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
     //Money
-    FAILED_PARSE_VALUE(200 , "숫자로 파싱에 실패하였습니다. 해당 문자는 올바른 숫자 포멧이 아닙니다.");
+    FAILED_PARSE_VALUE(200, "숫자로 파싱에 실패하였습니다. 해당 문자는 올바른 숫자 포멧이 아닙니다.");
 
     private final String message;
     private final int status;

@@ -1,7 +1,6 @@
 package wooahan.youth.exchange.infrastructure;
 
 import java.net.URI;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
