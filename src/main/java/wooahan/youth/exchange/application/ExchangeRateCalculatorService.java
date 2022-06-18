@@ -14,21 +14,25 @@ import wooahan.youth.exchange.presentation.ExchangeResponseDto.ExchangeResponse;
 public class ExchangeRateCalculatorService {
 
     public ExchangeResponse calculate(ExchangeRequest request) {
-        validateSourceAmount(request);
-        Money currencyMoney = new Money(request.getExchangeRate(), request.getSource());
-        Money exchangeMoney = currencyMoney.exchange(request.getRemittanceAmount(), request.getSource());
+        validEmptyAndRange(request);
+        Money currencyMoney = new Money(request.getExchangeRate(), request.getReceptionCurrency());
+        Money exchangeMoney = currencyMoney.exchange(request.getReceptionAmount(), request.getRemittanceCurrency());
         return new ExchangeResponse(exchangeMoney);
     }
 
-    private void validateSourceAmount(ExchangeRequest request) {
-        Integer remittanceAmount = request.getRemittanceAmount();
-        Integer amount = getAmount(remittanceAmount);
+    private void validEmptyAndRange(ExchangeRequest request) {
+        Integer remittanceAmount = request.getReceptionAmount();
+        Integer amount = validEmptyAmount(remittanceAmount);
+        validRangeAmount(amount);
+    }
+
+    private void validRangeAmount(Integer amount) {
         if (amount < 0 || amount > 10000) {
             throw new BusinessException(ErrorCode.INVALID_INPUT_VALUE);
         }
     }
 
-    private Integer getAmount(Integer remittanceAmount) {
+    private Integer validEmptyAmount(Integer remittanceAmount) {
         return Optional.ofNullable(remittanceAmount)
                 .orElseThrow(() -> new BusinessException(ErrorCode.INVALID_INPUT_VALUE));
     }

@@ -1,6 +1,5 @@
 package wooahan.youth.exchange.presentation;
 
-import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,10 +20,10 @@ public class ExchangeRequestDto {
     @Getter
     @AllArgsConstructor
     public static class ExchangeRequest {
-        private final String source;
-        private final String currency;
+        private final String remittanceCurrency;
+        private final String receptionCurrency;
         @NotNull
-        private Integer remittanceAmount;
+        private Integer receptionAmount;
         private double exchangeRate;
     }
 }

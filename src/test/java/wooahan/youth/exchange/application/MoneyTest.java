@@ -28,7 +28,7 @@ class MoneyTest {
     @MethodSource("provideSuccessMoneyParameter")
     void createMoney(BigDecimal amount, String currency) {
         //given
-        DecimalFormat format = new DecimalFormat("###,###,###.000");
+        DecimalFormat format = new DecimalFormat("###,###,###.00");
         String exchangeRate = format.format(amount);
 
         //when
@@ -50,7 +50,7 @@ class MoneyTest {
 
         //then
         assertThat(afterCurrency.getCurrency()).isEqualTo("USD");
-        assertThat(afterCurrency.getExchangeRate()).isEqualTo("3,424.10");
+        assertThat(afterCurrency.getExchangeRate()).isEqualTo("3,423.10");
     }
 
     private static Stream<Arguments> provideSuccessMoneyParameter() {

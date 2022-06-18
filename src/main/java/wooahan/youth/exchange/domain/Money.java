@@ -33,10 +33,10 @@ public class Money {
         return resultExchangeRate == null;
     }
 
-    public Money exchange(int remittanceAmount, String source) {
+    public Money exchange(int remittanceAmount, String currency) {
         BigDecimal resultExchangeRate = exchangeRate.multiply(new BigDecimal(remittanceAmount))
                 .setScale(2, RoundingMode.DOWN);
-        return new Money(resultExchangeRate, source);
+        return new Money(resultExchangeRate, currency);
     }
 
     public String getExchangeRate() {
