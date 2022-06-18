@@ -28,8 +28,7 @@ class CurrencyDataApiServiceTest {
 
         CurrencyDataDto responseDto = new CurrencyDataDto(
                 new Quotes(1231.1234, 2344.2323, 1111.111),
-                "USD",
-                true
+                "USD"
         );
 
         given(currencyDataApiCaller.call(requestDto)).willReturn(responseDto);

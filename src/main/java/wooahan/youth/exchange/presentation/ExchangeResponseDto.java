@@ -13,7 +13,6 @@ public class ExchangeResponseDto {
 
         private final Quotes quotes;
         private final String source;
-        private final boolean success;
     }
 
     @Getter
