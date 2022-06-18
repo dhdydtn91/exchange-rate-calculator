@@ -1,9 +1,11 @@
 package wooahan.youth.exchange.presentation;
 
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wooahan.youth.exchange.application.CurrencyDataApiService;
@@ -25,7 +27,7 @@ public class ExchangeRateCalculatorController {
     }
 
     @PostMapping("/exchange")
-    public ResponseEntity<CommonResponse> exchange(ExchangeRequestDto.ExchangeRequest request) {
+    public ResponseEntity<CommonResponse> exchange(@RequestBody @Valid ExchangeRequestDto.ExchangeRequest request) {
         var response = exchangeRateCalculatorService.calculate(request);
         return ResponseEntity.ok(CommonResponse.success(response));
     }
